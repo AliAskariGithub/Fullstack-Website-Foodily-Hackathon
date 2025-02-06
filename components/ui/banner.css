@@ -1,0 +1,159 @@
+.banner {
+  width: 100%;
+  height: 120vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  top: 100px;
+}
+
+.banner .slider {
+  position: absolute;
+  width: 150px;
+  height: 200px;
+  top: 10%;
+  left: calc(50% - 100px);
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  animation: autoRun 20s linear infinite;
+  z-index: 2;
+}
+@keyframes autoRun {
+  from {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+  }
+}
+
+.banner .slider .item {
+  position: absolute;
+  inset: 0 0 0 0;
+  transform: rotateY(
+      calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+    )
+    translateZ(550px);
+}
+
+.banner .slider .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner .content h1 {
+  font-family: "chakra petch";
+  font-size: 10em;
+  line-height: 1em;
+  color: #e9b966;
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 100px;
+}
+
+.banner .content h1::after {
+  position: absolute;
+  inset: 0 0 0 0;
+  content: attr(data-content);
+  z-index: 2;
+  -webkit-text-stroke: 3px #8f613c;
+  color: transparent;
+}
+.banner .content .main-content {
+  position: absolute;
+  top: 250px;
+  color: #fff;
+  font-family: "chakra petch";
+  font-size: 2em;
+  padding: 20px;
+  text-shadow: 0 10px 20px #000;
+  z-index: 2;
+  max-width: unset;
+  width: 100%;
+  text-align: center;
+  padding: 0 30px;
+}
+.banner .content h2 {
+  font-size: 3em;
+}
+
+.banner .content .model {
+  background-image: url("/images/modalshowcase.png");
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background-size: auto 130%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: 1;
+}
+
+@media screen and (max-width: 1023px) {
+  .banner .slider {
+    width: 160px;
+    height: 200px;
+    left: calc(50% - 80px);
+  }
+  .banner .slider .item {
+    transform: rotateY(
+        calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+      )
+      translateZ(300px);
+  }
+
+  .banner .content h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 7em;
+  }
+  .banner .content .main-content {
+    color: #fff;
+    padding: 20px;
+    text-shadow: 0 10px 20px #000;
+    z-index: 2;
+    max-width: unset;
+    width: 100%;
+    text-align: center;
+    padding: 0 30px;
+    font-family: "chakra petch";
+  font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .banner .slider {
+    width: 100px;
+    height: 200px;
+    left: calc(50% - 50px);
+  }
+  .banner .slider .item {
+    transform: rotateY(
+        calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+      )
+      translateZ(400px);
+  }
+  .banner .content h1 {
+    font-size: 5em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+    .banner .content .model {
+        background-image: url("/images/modalshowcase.png");
+        width: 100%;
+        height: 85vh;
+        position: absolute;
+        top: -100px;
+        left: 0;
+        background-size: auto 130%;
+        background-repeat: no-repeat;
+        background-position: top center;
+        z-index: 1;
+      }
+}

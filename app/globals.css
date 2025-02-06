@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --theme-color-1: #8f613c;
+  --theme-color-2: #e9b966;
+  --theme-color-3: #e1d3b6;
+}
+
+
+body {
+  background: linear-gradient(90deg, #e1d3b6, #e9b966, #e1d3b6);
+  animation: gradientMove 5s infinite linear;
+}
+
+@keyframes gradientMove {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+
+.button-hover-effect-border {
+  position: relative;
+  display: inline-block;
+  padding: 6px 4px;
+  color: #8f613c;
+  background-color: transparent;
+  border: 2px solid #8f613c;
+  font-weight: bold;
+  overflow: hidden;
+  text-align: center;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+.button-hover-effect-border span {
+  position: relative;
+  z-index: 2;
+}
+
+.button-hover-effect-border:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #8f613c;
+  z-index: 0;
+  transition: top 0.3s ease;
+}
+
+.button-hover-effect-border:hover::before {
+  top: 0;
+}
+
+.button-hover-effect-border:hover {
+  color: #e9b966;
+}
+
+.hover\:underline-effect {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.hover\:underline-effect::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #8f613c;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.hover\:underline-effect:hover::after {
+  width: 100%;
+  left: 0;
+  transform: translateX(0);
+}
+
+.button-hover-effect {
+  position: relative;
+  display: inline-block;
+  padding: 6px 4px;
+  color: #e9b966;
+  background-color: #8f613c;
+  border: 2px solid #8f613c;
+  font-weight: bold;
+  overflow: hidden;
+  text-align: center;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+.button-hover-effect span {
+  position: relative;
+  z-index: 2;
+}
+
+.button-hover-effect::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 0;
+  transition: top 0.3s ease;
+}
+
+.button-hover-effect:hover::before {
+  top: 0;
+}
+
+.button-hover-effect:hover {
+  color: #8f613c;
+}
+
+
+.loader {
+  animation: rotate 1s infinite;
+  height: 50px;
+  width: 50px;
+}
+
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  content: "";
+  display: block;
+  height: 20px;
+  width: 20px;
+}
+.loader:before {
+  animation: ball1 1s infinite;
+  background-color: #8f613c;
+  box-shadow: 30px 0 0 #e9b966;
+  margin-bottom: 10px;
+}
+.loader:after {
+  animation: ball2 1s infinite;
+  background-color: #e9b966;
+  box-shadow: 30px 0 0 #8f613c;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) scale(0.8);
+  }
+  50% {
+    transform: rotate(360deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(720deg) scale(0.8);
+  }
+}
+
+@keyframes ball1 {
+  0% {
+    box-shadow: 30px 0 0 #e9b966;
+  }
+  50% {
+    box-shadow: 0 0 0 #e9b966;
+    margin-bottom: 0;
+    transform: translate(15px, 15px);
+  }
+  100% {
+    box-shadow: 30px 0 0 #e9b966;
+    margin-bottom: 10px;
+  }
+}
+
+@keyframes ball2 {
+  0% {
+    box-shadow: 30px 0 0 #8f613c;
+  }
+  50% {
+    box-shadow: 0 0 0 #8f613c;
+    margin-top: -20px;
+    transform: translate(15px, 15px);
+  }
+  100% {
+    box-shadow: 30px 0 0 #8f613c;
+    margin-top: 0;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffecd6;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #f4d35e, #f7b32b);
+  border-radius: 10px;
+  border: 2px solid #ffecd6;
+  position: relative;
+  animation: thumb-animation 1.5s linear infinite;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #f7b32b, #f4a261);
+}
+
+::-webkit-scrollbar-corner {
+  background: #ffecd6;
+}
+
+@keyframes thumb-animation {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+/* 
+.slide-in-bck-center {
+  animation: puff-in-center 2s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+  animation-timeline: view();
+  animation-range: entry 0 cover 15%;
+  scroll-behavior: smooth;
+}
+
+ @keyframes puff-in-center {
+  0% {
+    transform: translateY(300) ;
+    filter: blur(16px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    filter: blur(0px);
+    opacity: 1;
+  }
+} */
