@@ -37,7 +37,7 @@ const RECIPE_BY_SLUG_QUERY = defineQuery(`
 
 export const getRecipeBySlug = async (slug: string): Promise<Recipe | null> => {
   try {
-    const response = await sanityFetch<{ data: Recipe | null }>({
+    const response = await sanityFetch({
       query: RECIPE_BY_SLUG_QUERY,
       params: { slug },
     });
