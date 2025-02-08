@@ -17,7 +17,7 @@ async function FoodPage({ params }: { params: Promise<{ slug: string }> }) {
   const resovledParams = await params;
   const {slug} = resovledParams;
   const foods = await getFoodBySlug(slug);
-
+// 
   if (!foods) {
     return (
       <div className="container mx-auto px-4 py-8">

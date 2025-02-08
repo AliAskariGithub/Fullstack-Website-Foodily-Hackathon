@@ -12,6 +12,7 @@ import { RiFilePaper2Line } from "react-icons/ri";
 import { MdOutlineHistory } from "react-icons/md";
 import { IoCartSharp } from "react-icons/io5";
 import useBasketStore from "@/store/store";
+import { BiFoodMenu } from "react-icons/bi";
 
 const caveat = Caveat({ weight: "600", subsets: ["latin"] });
 const chakra_petch = Chakra_Petch({ weight: "700", subsets: ["latin"] });
@@ -31,14 +32,14 @@ const Sidebar = () => {
   return (
     <div>
       <div>
-      <FiSidebar
-        onClick={toggleSidebar}
-        size={20}
-        className={`fixed top-5 z-50 duration-150 transition-all text-[#8f613c] ${
-          isExpanded ? "left-[182px] " : "md:left-[70px] left-6"
-        }`}
-      />
-      <Link
+        <FiSidebar
+          onClick={toggleSidebar}
+          size={20}
+          className={`fixed top-5 z-50 duration-150 transition-all text-[#8f613c] ${
+            isExpanded ? "left-[182px] " : "md:left-[70px] left-6"
+          }`}
+        />
+        <Link
           href={user ? "/cart" : "/sign-in"}
           className="w-max cursor-pointer fixed z-[100] right-8 top-5  text-[#8f613c] hover:text-[#744732] hover:scale-125 duration-200 transition-all"
         >
@@ -142,6 +143,21 @@ const Sidebar = () => {
                 className={`${caveat.className} hover:underline-effect text-xl hover:font-bold `}
               >
                 Menu
+              </span>
+            )}
+          </Link>
+
+          <Link
+            href={"/recipes"}
+            className="flex justify-center items-center gap-2 hover:scale-125 text-[#8f613c] hover:text-[#744732] duration-200 transition"
+          >
+            <BiFoodMenu size={22} />
+            {isExpanded && (
+              <span
+                onClick={toggleSidebar}
+                className={`${caveat.className} hover:underline-effect text-xl hover:font-bold `}
+              >
+                Recipes
               </span>
             )}
           </Link>

@@ -1,9 +1,9 @@
 import { defineField, defineType } from "sanity";
 import { GiCook } from "react-icons/gi";
 
-export const Chief = defineType({
-    name: 'chiefs',
-    title: 'Chiefs',
+export const Chef = defineType({
+    name: 'chef',
+    title: 'Chef',
     type: 'document',
     icon: GiCook,
     fields: [
@@ -11,7 +11,7 @@ export const Chief = defineType({
         name: 'name',
         title: 'Name',
         type: 'string',
-        validation: (Rule) => Rule.required().min(3),
+        validation: (Rule) => Rule.required(),
       }),
       defineField({
         name: 'bio',
@@ -37,32 +37,31 @@ export const Chief = defineType({
         name: 'country',
         title: 'Country',
         type: "string",
-        validation: (Rule) => Rule.required(),
         options: {
           list: [
             { title: 'Pakistan', value: 'Pakistan' },
             { title: 'India', value: 'India' },
-            { title: 'Nepal', value: 'Nepal' },
-            { title: 'United States', value: 'United States' },
-            { title: 'United Kingdom', value: 'United Kingdom' },
+            { title: 'Afghanistan', value: 'Afghanistan' },
+            { title: 'Turkey', value: 'Turkey' },
             { title: 'Other', value: 'Other' },
           ]
-        }
+        },
+        validation: (Rule) => Rule.required(),
       }),
       defineField({
         name: 'rating',
         title: 'Rating',
-        type: 'string',
-        validation: (Rule) => Rule.required(),
+        type: 'string',      
         options: {
           list: [
-            { title: 'Five Star', value: 'five-star' },
-            { title: 'Four Star', value: 'four-star' },
-            { title: 'Three Star', value: 'three-star' },
-            { title: 'Two Star', value: 'two-star' },
-            { title: 'One Star', value: 'one-star' },
+            { title: '⭐⭐⭐⭐⭐', value: '⭐⭐⭐⭐⭐' },
+            { title: '⭐⭐⭐⭐', value: '⭐⭐⭐⭐' },
+            { title: '⭐⭐⭐', value: '⭐⭐⭐' },
+            { title:'⭐⭐', value: '⭐⭐' },
+            { title:'⭐', value: '⭐' },
           ]
-        }
+        },
+        validation: (Rule) => Rule.required(),
       }),
     ],
 });

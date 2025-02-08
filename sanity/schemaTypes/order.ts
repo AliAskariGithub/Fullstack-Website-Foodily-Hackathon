@@ -52,7 +52,7 @@ export default defineType({
               type: "image", 
               title: "Food Image", 
               options: { 
-                hotspot: true // Ensure hotspot is properly included 
+                hotspot: true 
               } 
             }),
             defineField({ name: "food", type: "string", title: "Food Item" }),

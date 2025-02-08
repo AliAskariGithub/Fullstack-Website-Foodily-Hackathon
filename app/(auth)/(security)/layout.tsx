@@ -17,9 +17,7 @@ export default function RootLayout({
     <ClerkProvider>
     <html lang="en">
       <body>
-        <div>
         {children}
-        </div>
         <SanityLive />
       </body>
     </html>

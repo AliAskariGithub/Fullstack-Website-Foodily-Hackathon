@@ -27,13 +27,13 @@ export default defineType({
       name: 'price',
       title: 'Price',
       type: 'number',
-      validation: (Rule) => Rule.min(0).warning('Price should be a positive number.'),
+      validation: (Rule) => Rule.min(49).warning('Price should be a positive number.'),
     }),
     defineField({
       name: 'fakePrice',
       title: 'Fake Price',
       type: 'number',
-      validation: (Rule) => Rule.min(0).warning('Price should be a positive number.'),
+      validation: (Rule) => Rule.min(0).warning('Price should be a more than price number.'),
     }),
     defineField({
       name: 'image',
@@ -57,10 +57,10 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),  
     defineField({
-      name: 'chiefs',
-      title: 'Chief',
+      name: 'chef',
+      title: 'Chef',
       type: 'reference',
-      to: [{ type: 'chiefs' }],
+      to: [{ type: 'chef' }],
       description: 'The chief responsible for creating this food item',
     }),
     defineField({

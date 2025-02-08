@@ -29,7 +29,7 @@
 // const cinzel = Cinzel({ weight: '800', subsets: ['latin'] });
 // const chakraPetch = Chakra_Petch({ weight: '700', subsets: ['latin'] });
 
-// export default function NewFoodPage() {
+// export default function Page() {
 //   const [foods, setFoods] = useState<Food[]>([]);
 //   const [isOpen, setIsOpen] = useState(false);
 //   const { register, handleSubmit, reset } = useForm();

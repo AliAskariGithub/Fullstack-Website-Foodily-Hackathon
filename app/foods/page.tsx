@@ -131,7 +131,7 @@ const FoodPage = () => {
               
               {filteredMenu.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 slide-in-bck-center lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full max-w-4xl">
-                  {filteredMenu.map((food) => (
+                  {filteredMenu.map((food: Food) => (
                     <div
                       key={food._id}
                       className={`max-w-sm rounded-lg shadow-lg bg-white transform transition duration-300 ${

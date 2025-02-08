@@ -1,4 +1,3 @@
-import Chiefs from "@/components/Chiefs";
 import Feedback from "@/components/Feeback";
 import FoodView from "@/components/FoodView";
 import MainSection from "@/components/MainSection";
@@ -26,7 +25,6 @@ export default async function Home() {
             <FoodView foods={foods} />
           </div>
           <Feedback />
-          <Chiefs />
         </div>
       </div>
     </>

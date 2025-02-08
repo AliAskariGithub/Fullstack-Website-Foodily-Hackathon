@@ -58,7 +58,7 @@ export const SpecialMenu = defineType({
     defineField({
       name: 'chief',
       type: 'reference',
-      to: [{ type: 'chiefs' }], 
+      to: [{ type: 'chef' }], 
       validation: (Rule) => Rule.required(),
     }),
     defineField({

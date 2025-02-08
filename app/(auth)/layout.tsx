@@ -17,8 +17,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>{children}</body>
-        <SanityLive />
+        <body className="relative z-50">
+          {children}
+          <SanityLive />
+        </body>
       </html>
     </ClerkProvider>
   );
