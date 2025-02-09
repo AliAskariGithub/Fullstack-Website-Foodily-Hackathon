@@ -12,7 +12,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex flex-col max-h-full px-4 w-full pl-16">
+      <div className="flex flex-col max-h-full px-4 w-full md:pl-16">
 
         <MainSection />
         <div className="space-y-40 mt-10">
