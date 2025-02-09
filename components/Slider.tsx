@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoMdArrowRoundForward } from "react-icons/io";
 import Link from "next/link";
 
@@ -27,11 +27,6 @@ const Slider = () => {
     setCurrentIndex(index);
   };
 
-  useEffect(() => {
-    const interval = setInterval(goToNextSlide, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="relative max-w-full overflow-hidden top-20 rounded-xl">
       <div
@@ -41,7 +36,7 @@ const Slider = () => {
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className="w-full h-80 flex-shrink-0 flex items-center justify-center rounded-md"
+            className="w-full object-cover h-96 flex-shrink-0 flex items-center justify-center rounded-md"
             style={{
               backgroundImage: `url(${slide.image})`,
               backgroundSize: "cover",

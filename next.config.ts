@@ -13,7 +13,8 @@ const nextConfig = {
       "i.ytimg.com",
       "www.naushkitchenroutine.com",
       "i.ndtvimg.com",
-      "cdn.sanity.io"
+      "cdn.sanity.io",
+      'img.clerk.com',
     ],
   },
 };

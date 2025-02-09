@@ -120,3 +120,12 @@ export interface Chef {
   country: "Pakistan" | "India" | "Afghanistan" | "Turkey" | "Other";
   rating: "⭐⭐⭐⭐⭐" | "⭐⭐⭐⭐" | "⭐⭐⭐" | "⭐⭐" | "⭐";
 }
+
+export interface Feedback {
+  _type: 'feedback';
+  name: string;
+  createdAt: string;
+  image: string;
+  feedback: string;
+  stars: number;
+}
