@@ -9,6 +9,7 @@ import { IoMdArrowRoundForward } from "react-icons/io";
 import { IoIosAdd } from "react-icons/io";
 import { Caveat, Chakra_Petch, Satisfy } from "next/font/google";
 import type { Feedback } from "@/sanity/Types/schemasTypes";
+import { IoClose } from "react-icons/io5";
 
 const caveat = Caveat({ weight: "600", subsets: ["latin"] });
 const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });
@@ -98,7 +99,7 @@ export default function Feedback() {
     <div className="flex flex-col items-center gap-6 p-10 bg-darkpeach rounded-lg shadow-md">
       <div className="flex justify-between w-full items-center">
         <h1
-          className={`text-4xl font-bold text-[#8f613c] ${chakra_petch.className}`}
+          className={`text-2xl md:text-4xl font-bold text-[#8f613c] ${chakra_petch.className}`}
         >
           Feedbacks
         </h1>
@@ -106,8 +107,8 @@ export default function Feedback() {
           className="button-hover-effect-border bg-transparent rounded-full"
           onClick={() => setIsOpen(true)}
         >
-          <span className="px-2 flex justify-center items-center gap-1">
-            <IoIosAdd size={24} /> Feedback
+          <span className="px-2 flex justify-center text-sm md:text-base items-center gap-1">
+            <IoIosAdd /> Feedback
           </span>
         </button>
       </div>
@@ -240,6 +241,7 @@ export default function Feedback() {
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black backdrop-blur z-50 bg-opacity-50">
           <div className="bg-white p-6 rounded-xl shadow-lg w-96">
+          <button onClick={() => setIsOpen(false)} className="relative left-[95%]"><IoClose size={20}/> </button>
             <h2
               className={`text-2xl font-bold text-[#8f613c] text-center mb-2 ${chakra_petch.className}`}
             >

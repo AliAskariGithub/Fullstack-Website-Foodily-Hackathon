@@ -8,7 +8,6 @@ import { useAuth, useUser } from "@clerk/clerk-react";
 import { FaPowerOff } from "react-icons/fa";
 import { FiSidebar } from "react-icons/fi";
 import { Caveat, Chakra_Petch } from "next/font/google";
-import { RiFilePaper2Line } from "react-icons/ri";
 import { MdOutlineHistory } from "react-icons/md";
 import { IoCartSharp } from "react-icons/io5";
 import useBasketStore from "@/store/store";
@@ -128,21 +127,6 @@ const Sidebar = () => {
                 className={`${caveat.className} hover:underline-effect text-xl hover:font-bold `}
               >
                 About
-              </span>
-            )}
-          </Link>
-
-          <Link
-            href={"/menu"}
-            className="flex justify-center items-center gap-2 hover:scale-125 text-[#8f613c] hover:text-[#744732] duration-200 transition"
-          >
-            <RiFilePaper2Line size={22} />
-            {isExpanded && (
-              <span
-                onClick={toggleSidebar}
-                className={`${caveat.className} hover:underline-effect text-xl hover:font-bold `}
-              >
-                Menu
               </span>
             )}
           </Link>

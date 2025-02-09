@@ -231,16 +231,18 @@ const OrdersDashboard = () => {
               </button>
             </form>
           </div>
-        <div className="absolute bottom-5 left-5">
+          <div className="absolute bottom-5 left-5">
             <Link href={"/"} className="button-hover-effect rounded-xl">
-             <span className="flex justify-center items-center gap-2 px-2"><IoMdArrowRoundBack /> Back</span>
+              <span className="flex justify-center items-center gap-2 px-2">
+                <IoMdArrowRoundBack /> Back
+              </span>
             </Link>
-            </div>
+          </div>
         </div>
       ) : (
         <>
           <Sidebar />
-          <div className="w-full h-full p-4 sm:p-6 relative">
+          <div className="w-full md:w-[95%] h-full p-2 relative">
             <div className="absolute top-3 sm:top-5 right-3 sm:right-5 flex items-center">
               <IoMdNotificationsOutline size={40} color="8f613c" />
               {orderStats.newOrders > 0 && (
@@ -251,18 +253,18 @@ const OrdersDashboard = () => {
                     {orderStats.newOrders}
                   </span>
                   {filteredOrders.map((order) => (
-                  <div
-                  key={order._id}
-                    className="absolute w-32 top-5 right-5 z-50 bg-white shadow-lg rounded-xl p-2 text-sm text-[#8f613c]"
-                  >
-                    {orderStats.newOrders} new order received! 
-                  </div>
-                ))}
+                    <div
+                      key={order._id}
+                      className="absolute w-32 top-5 right-5 z-50 bg-white shadow-lg rounded-xl p-2 text-sm text-[#8f613c]"
+                    >
+                      {orderStats.newOrders} new order received!
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
 
-            <div className="absolute top-16 sm:top-20 left-4 sm:left-20 w-11/12 p-4 sm:p-6 rounded-xl">
+            <div className="absolute top-16 sm:top-20 left-0 md:left-16 w-full pl-4 pr-1 rounded-xl">
               <div className="w-full mb-4 sm:mb-6 bg-[#8f613c] p-4 sm:p-6 rounded-xl flex hover:scale-105 duration-200 transition-all justify-center">
                 <h1
                   className={`text-2xl sm:text-3xl text-white ${cinzel.className}`}
@@ -351,7 +353,7 @@ const OrdersDashboard = () => {
                         ].map((heading, index) => (
                           <th
                             key={index}
-                            className={`p-2 sm:p-3 border border-black ${chakra_petch.className}`}
+                            className={`p- sm:p-3 border border-black text-xs md:text-base ${chakra_petch.className}`}
                           >
                             <div className="skeleton-loader bg-gray-300 h-4 w-20 rounded-sm"></div>
                           </th>
@@ -365,31 +367,31 @@ const OrdersDashboard = () => {
                               key={index}
                               className="text-center border border-white opacity-90 hover:opacity-100"
                             >
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 <div className="skeleton-loader bg-gray-300 h-4 w-12 rounded-sm"></div>
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 <div className="skeleton-loader bg-gray-300 h-4 w-20 rounded-sm"></div>
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 <div className="skeleton-loader bg-gray-300 h-4 w-28 rounded-sm"></div>
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 <div className="skeleton-loader bg-gray-300 h-4 w-28 rounded-sm"></div>
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 <div className="skeleton-loader bg-gray-300 h-4 w-32 rounded-sm"></div>
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 <div className="skeleton-loader bg-gray-300 h-4 w-20 rounded-sm"></div>
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 <div className="skeleton-loader bg-gray-300 h-4 w-24 rounded-sm"></div>
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 <div className="skeleton-loader bg-gray-300 h-4 w-16 rounded-sm"></div>
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 <div className="skeleton-loader bg-gray-300 h-4 w-20 rounded-sm"></div>
                               </td>
                             </tr>
@@ -399,19 +401,19 @@ const OrdersDashboard = () => {
                               key={order._id}
                               className={`text-center border border-white hover:border-black opacity-90 hover:opacity-100 transition duration-200 ${getRowClass(order.status)}`}
                             >
-                              <td className="p-2 sm:p-3 border">{index + 1}</td>
-                              <td className="p-2 sm:p-3 border font-bold text-gray-700">
+                              <td className="p- sm:p-3 border">{index + 1}</td>
+                              <td className="p- sm:p-3 border font-bold text-gray-700">
                                 {order.orderId}
                               </td>
                               <td
-                                className={`p-2 sm:p-3 border ${satisfy.className} text-gray-600`}
+                                className={`p- sm:p-3 border ${satisfy.className} text-gray-600`}
                               >
                                 {order.customerName}
                               </td>
-                              <td className="p-2 sm:p-3 border text-gray-600">
+                              <td className="p- sm:p-3 border text-gray-600">
                                 {order.customerEmail}
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 {order.items.map((item, i) => (
                                   <div
                                     key={i}
@@ -432,16 +434,16 @@ const OrdersDashboard = () => {
                                   </div>
                                 ))}
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 {order.phone}
                               </td>
-                              <td className="p-2 sm:p-3 border text-green-600 font-bold">
+                              <td className="p- sm:p-3 border text-green-600 font-bold">
                                 Rs {order.totalPrice.toFixed(2)}
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 {order.status}
                               </td>
-                              <td className="p-2 sm:p-3 border">
+                              <td className="p- sm:p-3 border">
                                 {order.status === "pending" && (
                                   <button
                                     className="bg-blue-500 text-white p-2 rounded"
@@ -501,8 +503,8 @@ const OrdersDashboard = () => {
                 </div>
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="w-full border-collapse border-2 border-black">
-                    <thead className="bg-[#e9b966] border-2 rounded-xl border-black text-[#794e2b] text-sm sm:text-xl">
+                  <table className="w-max lg:w-full border-collapse border-2 border-black">
+                    <thead className="bg-[#e9b966] border-2 rounded-xl border-black text-[#794e2b] text-xs sm:text-xl">
                       <tr>
                         {[
                           "S.No",
@@ -517,7 +519,7 @@ const OrdersDashboard = () => {
                         ].map((heading, index) => (
                           <th
                             key={index}
-                            className={`p-2 sm:p-3 border border-black ${chakra_petch.className}`}
+                            className={`p-1 sm:p-3 border border-black text-xs md:text-base ${chakra_petch.className}`}
                           >
                             {heading}
                           </th>
@@ -532,21 +534,21 @@ const OrdersDashboard = () => {
                             key={order._id}
                             className={`text-center border-2 border-black hover:border-black opacity-90 hover:opacity-100 transition duration-200 ${getRowClass(order.status)}`}
                           >
-                            <td className="p-2 sm:p-3 border border-black rounded-l-xl">
+                            <td className="p- sm:p-3 border border-black text-xs md:text-base rounded-l-xl">
                               {index + 1}
                             </td>
-                            <td className="p-2 sm:p-3 border border-black font-bold text-gray-700">
+                            <td className="p- sm:p-3 border border-black text-xs md:text-base font-bold text-gray-700">
                               {order.orderId}
                             </td>
                             <td
-                              className={`p-2 sm:p-3 border border-black ${satisfy?.className} text-gray-600`}
+                              className={`p- sm:p-3 border border-black text-xs md:text-base ${satisfy.className} text-gray-600`}
                             >
                               {order.customerName}
                             </td>
-                            <td className="p-2 sm:p-3 border border-black text-gray-600">
+                            <td className="p- sm:p-3 border border-black text-xs md:text-base text-gray-600">
                               {order.customerEmail}
                             </td>
-                            <td className="p-2 sm:p-3 border border-black">
+                            <td className="p- sm:p-3 border border-black text-xs md:text-base">
                               {order.items?.map((item, i) => (
                                 <div
                                   key={i}
@@ -567,16 +569,16 @@ const OrdersDashboard = () => {
                                 </div>
                               ))}
                             </td>
-                            <td className="p-2 sm:p-3 border border-black">
+                            <td className="p- sm:p-3 border border-black text-xs md:text-base">
                               {order.phone}
                             </td>
-                            <td className="p-2 sm:p-3 border border-black text-green-600 font-bold">
+                            <td className="p- sm:p-3 border border-black text-xs md:text-base text-green-600 font-bold">
                               Rs {order.totalPrice.toFixed(2)}
                             </td>
-                            <td className="p-2 sm:p-3 border border-black">
+                            <td className="p- sm:p-3 border border-black text-xs md:text-base">
                               {order.status}
                             </td>
-                            <td className="p-2 sm:p-3 border rounded-r-xl border-black">
+                            <td className="p- sm:p-3 border rounded-r-xl border-black">
                               {order.status === "pending" && (
                                 <button
                                   className="bg-blue-500 text-white p-2 rounded"
@@ -648,12 +650,13 @@ const OrdersDashboard = () => {
             </div>
           </div>
 
-          <div className="fixed bottom-0 left-3 z-50">
+              
+          <div className="fixed bottom-2 left-3 z-50">
             <button
               onClick={handleLogout}
               className="text-[#8f613c] p-2 rounded-full hover:scale-105 transition-transform duration-300 ease-in-out"
             >
-              <CgLogOut size={30} />
+              <CgLogOut size={28} />
             </button>
           </div>
         </>

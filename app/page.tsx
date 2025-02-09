@@ -12,10 +12,10 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex flex-col max-h-full px-4 w-full md:pl-16">
+      <div className="flex flex-col max-h-full pr-2 pl-4 w-full md:pl-16">
 
         <MainSection />
-        <div className="space-y-40 mt-10">
+        <div className="space-y-40 md:mt-10">
           <Slider />
           <div>
             <h1
