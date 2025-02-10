@@ -26,7 +26,6 @@ export const fetchFoods = async () => {
     tags,
     rating,
     discount,
-    stockQuantity,
     availability
   }`;
 

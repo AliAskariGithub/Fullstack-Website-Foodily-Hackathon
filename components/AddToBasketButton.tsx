@@ -1,18 +1,17 @@
 "use client";
+
 import useBasketStore from "@/store/store";
 import { useEffect, useState } from "react";
-import { FaMinus } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
+import { FaMinus, FaPlus } from "react-icons/fa";
 import { Food } from "@/sanity/Types/schemasTypes";
 import { toast } from "sonner";
-import { Cinzel } from "next/font/google";
-
-const cinzel = Cinzel({ weight: "800", subsets: ["latin"] });
 
 interface AddToBasketButtonProps {
   food: Food;
   disabled?: boolean;
 }
+
+const MAX_QUANTITY = 10;
 
 const AddToBasketButton = ({ food, disabled }: AddToBasketButtonProps) => {
   const { addItem, removeItem, getItemCount } = useBasketStore();
@@ -24,74 +23,49 @@ const AddToBasketButton = ({ food, disabled }: AddToBasketButtonProps) => {
   }, []);
 
   if (!isClient) {
-    return null;
+    return <p className="text-center text-gray-500">Loading...</p>;
   }
 
   const handleAddItem = () => {
-    addItem(food);
-    const now = new Date();
-    const formattedDateTime = `${now.toLocaleDateString(undefined, {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    })} at ${now.toLocaleTimeString()}`;
-
-    toast("Your order has been Added", {
-      description: formattedDateTime,
-    });
+    if (itemCount < MAX_QUANTITY) {
+      addItem(food);
+      toast("Your order has been added", { description: new Date().toLocaleString() });
+    } else {
+      toast("Maximum limit reached (10 items)", { description: new Date().toLocaleString() });
+    }
   };
 
   const handleRemoveItem = () => {
-    removeItem(food._id);
-    const now = new Date();
-    const formattedDateTime = `${now.toLocaleDateString(undefined, {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    })} at ${now.toLocaleTimeString()}`;
-
-    toast("Your order has been Removed", {
-      description: formattedDateTime,
-    });
+    if (itemCount > 0) {
+      removeItem(food._id);
+      toast("Your order has been removed", { description: new Date().toLocaleString() });
+    }
   };
 
   return (
-    <div className="flex items-center justify-start -space-x-2 w-full">
+    <div className="flex items-center w-full -space-x-2">
       <button
         onClick={handleRemoveItem}
-        className={`mt-4 button-hover-effect w-full rounded-l-xl ${
-          food.stockQuantity > 0 ? "" : "cursor-not-allowed"
+        className={`mt-4 py-2 w-full button-hover-effect rounded-l-xl rounded-r-[4px] transition ${
+          itemCount > 0 ? "" : "opacity-50 cursor-not-allowed"
         }`}
-        disabled={food.stockQuantity === 0}
+        disabled={itemCount === 0 || disabled}
       >
-        <span className={`${cinzel.className} relative left-[40%]`}>
-          <FaMinus size={20} />
-        </span>
+       <span className=" flex items-center justify-center"><FaMinus size={20} /></span>
       </button>
 
-      <button
-        className={`mt-4 border-4 border-[#8f613c] w-full ${
-          food.stockQuantity > 0 ? "" : "cursor-not-allowed"
-        }`}
-        disabled={food.stockQuantity === 0}
-      >
-        <span className={`${cinzel.className} text-lg text-[#8f613c]`}>
-          {itemCount}
-        </span>
-      </button>
+      <div className={`mt-4 px-6 py-2 border-2 border-[#8f613c] text-[#8f613c] font-bold text-lg rounded-md ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}>
+         {itemCount}
+      </div>
 
       <button
         onClick={handleAddItem}
-        className={`mt-4 button-hover-effect rounded-r-xl w-full ${
-          food.stockQuantity > 0 ? "" : "cursor-not-allowed"
+        className={`mt-4 py-2 w-full button-hover-effect rounded-r-xl rounded-l-[4px] transition ${
+          itemCount >= MAX_QUANTITY || disabled ? "opacity-50 cursor-not-allowed" : ""
         }`}
-        disabled={disabled}
+        disabled={itemCount >= MAX_QUANTITY || disabled}
       >
-        <span className={`${cinzel.className} relative left-[40%]`}>
-          <FaPlus size={20} />
-        </span>
+        <span className=" flex items-center justify-center"><FaPlus size={20}/></span>
       </button>
     </div>
   );

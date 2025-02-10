@@ -47,7 +47,7 @@ export default defineType({
       name: 'description',
       title: 'Description',
       type: 'text',
-      validation: (Rule) => Rule.min(200).max(500).warning('Description should not exceed 500 characters or be less than 200 characters.'),
+      validation: (Rule) => Rule.min(200).max(600).error('Description should not exceed 500 characters or be less than 200 characters.'),
     }),
     defineField({
       name: 'category',
@@ -104,13 +104,6 @@ export default defineType({
       title: 'Discount Percentage',
       type: 'number',
       description: 'Discount on the price of the food item, if applicable or otherwise you can leave it.',
-    }),
-    defineField({
-      name: 'stockQuantity',
-      title: 'Stock Quantity',
-      type: 'number',
-      description: 'Number of units available in stock',
-      validation: (Rule) => Rule.min(0).warning('Stock quantity should be positive.'),
     }),
     defineField({
       name: 'availability',

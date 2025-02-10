@@ -7,13 +7,13 @@ const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });
 const chakra_petch = Chakra_Petch({ weight: "700", subsets: ["latin"] });
 
 function FoodThumb({ foods }: { foods: Food }) {
-  const isOutOfStock = foods.stockQuantity != null && foods.stockQuantity <= 0;
+  const isOutOfStock = !foods.availability;
   const isFake = foods.fakePrice != null && foods.fakePrice > 0;
 
   return (
     <>
       <Link
-        href={`/foods/${foods.name.toLowerCase().replace(/ /g, "-")}`}
+        href={`${isOutOfStock ? `` : `/foods/${foods.name.toLowerCase().replace(/ /g, "-")}` }`}
         className={`group flex flex-col bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden ${
           isOutOfStock ? "opacity-50" : ""
         }`}
@@ -24,7 +24,7 @@ function FoodThumb({ foods }: { foods: Food }) {
           </div>
           {foods.discount > 0 && (
             <div>
-              <div className="absolute top-2 -left-1 rounded-r-full  bg-red-600 z-10 w-max px-3 py-1 text-xs">
+              <div className="absolute top-2 -left-1 rounded-r-full bg-red-600 z-10 w-max px-3 py-1 text-xs">
                 <span className="font-medium text-xs text-white pr-1">
                   {foods.discount}% off
                 </span>
@@ -49,11 +49,11 @@ function FoodThumb({ foods }: { foods: Food }) {
         <div
           key={foods._id}
           className={`max-w-sm rounded-lg shadow-lg bg-white transform transition duration-300 ${
-            foods.stockQuantity > 0 ? "hover:shadow-2xl" : "opacity-50"
+            foods.availability ? "hover:shadow-2xl" : "opacity-50"
           }`}
         >
           <div className="p-4">
-            <h2 className={`text-xl font-extrabold ${satisfy.className}`}>
+            <h2 className={`text-xl font-extrabold line-clamp-1 ${satisfy.className}`}>
               {foods.name}
             </h2>
 
@@ -97,16 +97,20 @@ function FoodThumb({ foods }: { foods: Food }) {
             </div>
 
             <div
-              className={`${foods.stockQuantity > 0 ? "absolute bottom-40 mb-1 right-2" : "cursor-not-allowed absolute top-0 left-0 w-full z-10 bg-opacity-60 backdrop-blur-sm flex justify-center items-center  bg-white h-full"}`}
+              className={`${
+                foods.availability
+                  ? "absolute bottom-40 mb-1 right-2"
+                  : "cursor-not-allowed absolute top-0 left-0 w-full z-10 bg-opacity-60 backdrop-blur-sm flex justify-center items-center bg-white h-full"
+              }`}
             >
               <span
                 className={`font-medium text-2xl ${
-                  foods.stockQuantity >= 1
+                  foods.availability
                     ? "text-green-600 text-xs px-3 py-1 rounded-full shadow"
                     : "text-red-800"
                 } ${chakra_petch.className}`}
               >
-                {foods.stockQuantity >= 1 ? "In Stock" : "Out of Stock"}
+                {foods.availability ? "In Stock" : "Out of Stock"}
               </span>
             </div>
           </div>

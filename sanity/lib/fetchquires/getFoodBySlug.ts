@@ -28,7 +28,6 @@ export const getFoodBySlug = async (slug: string) => {
       tags,
       rating,
       discount,
-      stockQuantity,
       availability
     }`);
 

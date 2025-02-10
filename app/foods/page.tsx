@@ -13,7 +13,6 @@ import useBasketStore from "@/store/store";
 import { IoIosPricetag } from "react-icons/io";
 import FoodView from "@/components/FoodView";
 
- 
 const caveat = Caveat({ weight: "600", subsets: ["latin"] });
 const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });
 const chakra_petch = Chakra_Petch({ weight: "700", subsets: ["latin"] });
@@ -127,106 +126,103 @@ const FoodPage = () => {
             </div>
           </div>
         ) : (
-            <div className="w-full flex justify-center items-center">
-              
-              {filteredMenu.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 slide-in-bck-center lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full max-w-4xl">
-                  {filteredMenu.map((food: Food) => (
-                    <div
-                      key={food._id}
-                      className={`max-w-sm rounded-lg shadow-lg bg-white transform transition duration-300 ${
-                        food.stockQuantity > 0
-                          ? "hover:scale-105 hover:shadow-2xl"
-                          : "opacity-50"
-                      }`}
-                    ><FoodView foods={foods} />
-                      <div className="bg-[#7e502b] absolute top-2 right-2 text-white px-2 py-1 rounded-full text-xs">
-                        <span className={`${chakra_petch.className}`}>
-                          {" "}
-                          {food.tags}
+          <div className="w-full flex justify-center items-center">
+            {filteredMenu.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 slide-in-bck-center lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full max-w-4xl">
+                {filteredMenu.map((food: Food) => (
+                  <div
+                    key={food._id}
+                    className={`max-w-sm rounded-lg shadow-lg bg-white transform transition duration-300 ${
+                      food.availability
+                        ? "hover:scale-105 hover:shadow-2xl"
+                        : "opacity-50"
+                    }`}
+                  >
+                    <FoodView foods={foods} />
+                    <div className="bg-[#7e502b] absolute top-2 right-2 text-white px-2 py-1 rounded-full text-xs">
+                      <span className={`${chakra_petch.className}`}>
+                        {food.tags}
+                      </span>
+                    </div>
+
+                    <Image
+                      src={food.image.asset.url}
+                      alt={food.name}
+                      width={1000}
+                      height={1000}
+                      className="w-full h-56 object-cover rounded-t-lg"
+                    />
+
+                    <div className="p-4">
+                      <h2
+                        className={`text-xl font-extrabold ${satisfy.className}`}
+                      >
+                        {food.name}
+                      </h2>
+
+                      <p
+                        className={`text-gray-600 text-sm mt-1 line-clamp-3 ${satisfy.className}`}
+                      >
+                        {food.description}
+                      </p>
+
+                      <div className="flex items-center justify-between mt-5">
+                        <span
+                          className={`flex items-center font-extrabold text-lg ${satisfy.className}`}
+                        >
+                          Rs {food.price}
+                          Rs {food.fakePrice}
+                        </span>
+
+                        <div>
+                          {food.rating &&
+                            Array.isArray(food.rating) &&
+                            food.rating.length > 0 &&
+                            food.rating.map((review, index) => (
+                              <span
+                                key={index}
+                                className={`text-lg font-bold ${chakra_petch.className}`}
+                              >
+                                {review.rating}/5 ⭐
+                              </span>
+                            ))}
+                        </div>
+                      </div>
+                      {food.discount > 0 && (
+                        <div>
+                          <IoIosPricetag className="absolute top-2 -left-2 text-white bg-red-700 w-max px-3 py-1 text-xs" />
+                          <span className="font-medium top-2 left-2 absolute z-10">
+                            {food.discount}% off
+                          </span>
+                        </div>
+                      )}
+                      <div className=" w-full">
+                        <AddToBasketButton food={food} />
+                      </div>
+
+                      <div
+                        className={`${food.availability ? "absolute bottom-40 mb-1 right-2" : "cursor-not-allowed absolute top-0 left-0 w-full z-10 bg-opacity-60 backdrop-blur-sm flex justify-center items-center  bg-white h-full"}`}
+                      >
+                        <span
+                          className={`font-medium text-2xl ${
+                            food.availability
+                              ? "text-green-600 text-xs px-3 py-1 rounded-full shadow"
+                              : "text-red-800"
+                          } ${chakra_petch.className}`}
+                        >
+                          {food.availability ? "In Stock" : "Out of Stock"}
                         </span>
                       </div>
-
-                      <Image
-                        src={food.image.asset.url}
-                        alt={food.name}
-                        width={1000}
-                        height={1000}
-                        className="w-full h-56 object-cover rounded-t-lg"
-                      />
-
-                      <div className="p-4">
-                        <h2
-                          className={`text-xl font-extrabold ${satisfy.className}`}
-                        >
-                          {food.name}
-                        </h2>
-
-                        <p
-                          className={`text-gray-600 text-sm mt-1 line-clamp-3 ${satisfy.className}`}
-                        >
-                          {food.description}
-                        </p>
-
-                        <div className="flex items-center justify-between mt-5">
-                          <span
-                            className={`flex items-center font-extrabold text-lg ${satisfy.className}`}
-                          >
-                            Rs {food.price}
-                            Rs {food.fakePrice}
-                          </span>
-
-                          <div>
-                            {food.rating &&
-                              Array.isArray(food.rating) &&
-                              food.rating.length > 0 &&
-                              food.rating.map((review, index) => (
-                                <span
-                                  key={index}
-                                  className={`text-lg font-bold ${chakra_petch.className}`}
-                                >
-                                  {review.rating}/5 ⭐
-                                </span>
-                              ))}
-                          </div>
-                        </div>
-                        {food.discount > 0 && (
-                          <div>
-                            <IoIosPricetag className="absolute top-2 -left-2 text-white bg-red-700 w-max px-3 py-1 text-xs" />
-                            <span className="font-medium top-2 left-2 absolute z-10">
-                              {food.discount}% off
-                            </span>
-                          </div>
-                        )}
-                        <div className=" w-full">
-                          <AddToBasketButton food={food} />
-                        </div>
-
-                        <div
-                          className={`${food.stockQuantity > 0 ? "absolute bottom-40 mb-1 right-2" : "cursor-not-allowed absolute top-0 left-0 w-full z-10 bg-opacity-60 backdrop-blur-sm flex justify-center items-center  bg-white h-full"}`}
-                        >
-                          <span
-                            className={`font-medium text-2xl ${
-                              food.stockQuantity >= 1
-                                ? "text-green-600 text-xs px-3 py-1 rounded-full shadow"
-                                : "text-red-800"
-                            } ${chakra_petch.className}`}
-                          >
-                            {food.stockQuantity >= 1
-                              ? "In Stock"
-                              : "Out of Stock"}
-                          </span>
-                        </div>
-                      </div>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-center text-gray-600 text-lg">
-                  No items match from the search.
-                </p>
-              )}
-            </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-center text-gray-600 text-lg">
+                No items match from the search.
+              </p>
+            )}
+          </div>
         )}
       </div>
     </div>

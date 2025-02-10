@@ -1,4 +1,3 @@
-
 import AddToBasketButton from "@/components/AddToBasketButton";
 import { getFoodBySlug } from "@/sanity/lib/fetchquires/getFoodBySlug";
 import { Chakra_Petch, Satisfy } from "next/font/google";
@@ -13,11 +12,10 @@ interface Review {
 const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });
 const chakra_petch = Chakra_Petch({ weight: "700", subsets: ["latin"] });
 
-async function FoodPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resovledParams = await params;
-  const {slug} = resovledParams;
+async function FoodPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const foods = await getFoodBySlug(slug);
-// 
+
   if (!foods) {
     return (
       <div className="container mx-auto px-4 py-8">
@@ -26,7 +24,7 @@ async function FoodPage({ params }: { params: Promise<{ slug: string }> }) {
     );
   }
 
-  const isOutOfStock = foods.stockQuantity != null && foods.stockQuantity <= 0;
+  const isOutOfStock = !foods.availability; 
 
   return (
     <div className="container mx-auto px-4 py-8 pl-10 md:pl-20 mt-20">
@@ -70,12 +68,10 @@ async function FoodPage({ params }: { params: Promise<{ slug: string }> }) {
           )}
 
           {foods.discount > 0 && (
-            <div>
-              <div className="absolute top-2 -left-1 rounded-r-full bg-red-600 z-10 w-max px-3 py-1 text-xs">
-                <span className="font-medium text-xs text-white pr-1">
-                  {foods.discount}% off
-                </span>
-              </div>
+            <div className="absolute top-2 -left-1 rounded-r-full bg-red-600 z-10 w-max px-3 py-1 text-xs">
+              <span className="font-medium text-xs text-white pr-1">
+                {foods.discount}% off
+              </span>
             </div>
           )}
 
@@ -84,16 +80,11 @@ async function FoodPage({ params }: { params: Promise<{ slug: string }> }) {
               {foods.name}
             </h2>
 
-            <p
-              className={`text-gray-600 text-lg mt-1 line-clamp-3 ${satisfy.className}`}
-            >
+            <p className={`text-gray-600 text-lg mt-1 line-clamp-3 ${satisfy.className}`}>
               {foods.description}
             </p>
-
             <div className="flex items-end justify-between mt-5">
-              <span
-                className={`flex items-center font-extrabold text-2xl ${satisfy.className}`}
-              >
+              <span className={`flex items-center font-extrabold text-2xl ${satisfy.className}`}>
                 Rs {foods.price}
                 {foods.fakePrice && (
                   <span className="ml-2 line-through text-base opacity-50">
@@ -126,12 +117,7 @@ async function FoodPage({ params }: { params: Promise<{ slug: string }> }) {
                         {review.rating}
                       </span>
                     ))}
-                  <span
-                    className={`opacity-70 text-md ${chakra_petch.className}`}
-                  >
-                    /5{" "}
-                  </span>
-                  ⭐
+                  <span className={`opacity-70 text-md ${chakra_petch.className}`}>/5</span> ⭐
                 </div>
               </div>
             </div>

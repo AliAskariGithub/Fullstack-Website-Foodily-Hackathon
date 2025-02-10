@@ -23,12 +23,11 @@ export async function POST(req: NextRequest) {
       chef,
       tags,
       discount,
-      stockQuantity,
       availability,
     } = body;
 
     if (
-      [name, slug, price, fakePrice, image, description, category, chef, tags, discount, stockQuantity, availability].some(
+      [name, slug, price, fakePrice, image, description, category, chef, tags, discount, availability].some(
         (field) => field === undefined || field === null
       )
     ) {
@@ -47,7 +46,6 @@ export async function POST(req: NextRequest) {
       chef: { _type: "reference", _ref: chef },
       tags,
       discount,
-      stockQuantity,
       availability,
     });
 

@@ -89,7 +89,6 @@ export interface Food  {
   tags: string[];
   rating: Array<{ reviewerName: string; reviewText: string; rating: number }>;
   discount: number;
-  stockQuantity: number;
   availability: boolean;
 };
 
