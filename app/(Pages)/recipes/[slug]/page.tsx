@@ -2,6 +2,7 @@ import { getRecipeBySlug } from "@/sanity/lib/fetchquires/recipe";
 import Image from "next/image";
 import { PortableText } from "@portabletext/react";
 import { Satisfy, Chakra_Petch } from "next/font/google";
+import { BiBook } from "react-icons/bi";
 
 const satisfy = Satisfy({ weight: "400", subsets: ["latin"] });
 const chakra_petch = Chakra_Petch({ weight: "700", subsets: ["latin"] });
@@ -11,15 +12,35 @@ interface Ingredient {
   quantity: string;
 }
 
-export default async function RecipeDetailsPage({ params }:  { params: Promise<{ slug: string }> }) {
+export default async function RecipeDetailsPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const resovledParams = await params;
-    const {slug} = resovledParams;
-    const recipe = await getRecipeBySlug(slug);
+  const { slug } = resovledParams;
+  const recipe = await getRecipeBySlug(slug);
 
   if (!recipe) {
     return (
-      <div className="text-center text-red-500 text-lg mt-10 font-semibold">
-        Recipe not found
+      <div className="flex flex-col items-center justify-center h-[40vh] col-span-full text-gray-500">
+        <div className="flex items-center justify-center -space-x-6">
+          <BiBook size={70} color="8f613c" className="-rotate-45 mt-8" />
+          <Image
+            src="/no-recipe-found.png"
+            alt="No recipe found"
+            width={500}
+            height={500}
+            className="w-40 h-40 rounded-full border-4 bg-darkpeach relative z-10 border-[#8f613c]"
+          />
+          <BiBook size={70} color="8f613c" className="rotate-45 mt-8" />
+        </div>
+        <p className={`text-2xl ${chakra_petch.className} text-black/80`}>
+          No recipes found.
+        </p>
+        <p className={`text-sm ${chakra_petch.className} text-black/80`}>
+          Try searching with a different keyword.
+        </p>
       </div>
     );
   }
@@ -27,11 +48,17 @@ export default async function RecipeDetailsPage({ params }:  { params: Promise<{
   return (
     <div className="container mx-auto px-4 py-10 relative md:left-4">
       <div className="mx-auto p-8 rounded-2xl">
-        <h1 className={`${chakra_petch.className} text-5xl text-[#8f613c] font-bold text-center mb-6`}>
+        <h1
+          className={`${chakra_petch.className} text-5xl text-[#8f613c] font-bold text-center mb-6`}
+        >
           {recipe.title}
         </h1>
 
-        <p className={`text-[#8f613c] text-center text-2xl italic mb-10 ${satisfy.className}`}>{recipe.about}</p>
+        <p
+          className={`text-[#8f613c] text-center text-2xl italic mb-10 ${satisfy.className}`}
+        >
+          {recipe.about}
+        </p>
 
         <Image
           src={recipe.image?.asset?.url || "/placeholder.jpg"}
@@ -42,7 +69,9 @@ export default async function RecipeDetailsPage({ params }:  { params: Promise<{
         />
 
         <div className="mt-8 bg-[#e9b966] p-6 rounded-xl shadow-md">
-          <h2 className={`${chakra_petch.className} text-3xl text-[#8f613c] font-bold mb-4`}>
+          <h2
+            className={`${chakra_petch.className} text-3xl text-[#8f613c] font-bold mb-4`}
+          >
             Meet the Chef
           </h2>
           {recipe.chef ? (
@@ -57,13 +86,33 @@ export default async function RecipeDetailsPage({ params }:  { params: Promise<{
                 />
               )}
               <div>
-                <p className={`${satisfy.className} text-2xl font-semibold text-[#8f613c]`}>
+                <p
+                  className={`${satisfy.className} text-2xl font-semibold text-[#8f613c]`}
+                >
                   {recipe.chef.name}
                 </p>
-                <p className={`text-black text-lg italic ${satisfy.className}`}>{recipe.chef.bio}</p>
-                <p className={`text-black/80 text-xl ${chakra_petch.className}`}>Experience: <span className={`text-base`}> {recipe.chef.experience}</span> years</p>
-                <p className={`text-black/80 text-xl ${chakra_petch.className}`}>Country: <span className={`text-base`}> {recipe.chef.country}</span></p>
-                <p className={`text-black/80 text-xl ${chakra_petch.className}`}>Rating: <span className={`text-base`}> {recipe.chef.rating}</span></p>
+                <p className={`text-black text-lg italic ${satisfy.className}`}>
+                  {recipe.chef.bio}
+                </p>
+                <p
+                  className={`text-black/80 text-xl ${chakra_petch.className}`}
+                >
+                  Experience:{" "}
+                  <span className={`text-base`}> {recipe.chef.experience}</span>{" "}
+                  years
+                </p>
+                <p
+                  className={`text-black/80 text-xl ${chakra_petch.className}`}
+                >
+                  Country:{" "}
+                  <span className={`text-base`}> {recipe.chef.country}</span>
+                </p>
+                <p
+                  className={`text-black/80 text-xl ${chakra_petch.className}`}
+                >
+                  Rating:{" "}
+                  <span className={`text-base`}> {recipe.chef.rating}</span>
+                </p>
               </div>
             </div>
           ) : (
@@ -72,7 +121,9 @@ export default async function RecipeDetailsPage({ params }:  { params: Promise<{
         </div>
 
         <div className="mt-8 bg-[#e9b966] p-6 rounded-xl shadow-md">
-          <h2 className={`${chakra_petch.className} text-3xl text-[#8f613c] font-bold mb-4`}>
+          <h2
+            className={`${chakra_petch.className} text-3xl text-[#8f613c] font-bold mb-4`}
+          >
             Food Category
           </h2>
           {recipe.category ? (
@@ -87,12 +138,32 @@ export default async function RecipeDetailsPage({ params }:  { params: Promise<{
                 />
               )}
               <div>
-                <p className={`${satisfy.className} text-2xl font-semibold text-[#8f613c]`}>
+                <p
+                  className={`${satisfy.className} text-2xl font-semibold text-[#8f613c]`}
+                >
                   {recipe.category.name}
                 </p>
-                <p className={`text-black text-lg italic ${satisfy.className}`}>{recipe.category.description}</p>
-                <p className={`text-black/80 text-xl ${chakra_petch.className}`}>Meal: <span className={`text-base`}> {recipe.category.mealType}</span></p>
-                <p className={`text-black/80 text-xl ${chakra_petch.className}`}>Type: <span className={`text-base`}> {recipe.category.eatType}</span></p>
+                <p className={`text-black text-lg italic ${satisfy.className}`}>
+                  {recipe.category.description}
+                </p>
+                <p
+                  className={`text-black/80 text-xl ${chakra_petch.className}`}
+                >
+                  Meal:{" "}
+                  <span className={`text-base`}>
+                    {" "}
+                    {recipe.category.mealType}
+                  </span>
+                </p>
+                <p
+                  className={`text-black/80 text-xl ${chakra_petch.className}`}
+                >
+                  Type:{" "}
+                  <span className={`text-base`}>
+                    {" "}
+                    {recipe.category.eatType}
+                  </span>
+                </p>
               </div>
             </div>
           ) : (
@@ -101,7 +172,9 @@ export default async function RecipeDetailsPage({ params }:  { params: Promise<{
         </div>
 
         <div className="mt-6">
-          <h2 className={`${chakra_petch.className} text-2xl font-bold text-[#8f613c]`}>
+          <h2
+            className={`${chakra_petch.className} text-2xl font-bold text-[#8f613c]`}
+          >
             Ingredients
           </h2>
           <ul className="list-disc pl-5 text-lg text-gray-800">
@@ -114,7 +187,9 @@ export default async function RecipeDetailsPage({ params }:  { params: Promise<{
         </div>
 
         <div className="mt-6">
-          <h2 className={`${chakra_petch.className} text-2xl font-bold text-[#8f613c]`}>
+          <h2
+            className={`${chakra_petch.className} text-2xl font-bold text-[#8f613c]`}
+          >
             Instructions
           </h2>
           <div className="prose text-gray-900">

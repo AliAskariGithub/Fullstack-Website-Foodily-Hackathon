@@ -17,13 +17,21 @@ export const getFoodBySlug = async (slug: string) => {
         hotspot
       },
       description,
-      category -> {
+      "category": category->{
         name,
-        slug
+        description,
+        mealType
       },
-      chiefs -> {
+      "chef": chef->{
+        _id,
         name,
-        bio
+        bio,
+        image {
+          asset -> {
+            _id,
+            url,
+          },
+        },
       },
       tags,
       rating,

@@ -55,7 +55,7 @@ const FoodPage = () => {
 
   return (
     <div className="flex min-h-screen px-4 w-full pl-16">
-      <div className="flex justify-end items-center gap-2 fixed z-10 pr-16 md:pr-24 bg-opacity-10 backdrop-blur-md py-3  bg-darkpeach h-max w-full">
+      <div className="flex justify-end items-center gap-2 fixed z-10 pr-16 md:pr-24 bg-opacity-10 backdrop-blur-md py-3 bg-darkpeach h-max w-full">
         <div
           className={`flex items-center duration-300 transition-all pr-2 py-1 rounded-xl ${
             isExpanded ? " bg-[#f0d5a6]" : "w-max"

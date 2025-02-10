@@ -162,7 +162,7 @@ const BasketPage = () => {
 
   return (
     <>
-      <Breadcrumb className="absolute sm:top-16 left-16 mt-2 sm:mt-0">
+      <Breadcrumb className="absolute md:flex hidden sm:top-16  left-16 mt-2 sm:mt-0">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -178,9 +178,9 @@ const BasketPage = () => {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="container mx-auto p-4 max-w-6xl mt-6 pl-16">
+      <div className="container mx-auto pl-5 pr-2 max-w-6xl mt-6 md:pl-16">
       <h1
-          className={`text-4xl font-bold text-center mb-8 text-[#8f613c] relative z-10 ${chakra_petch.className}`}
+          className={`text-4xl font-bold text-center mb-8 text-[#8f613c] relative ${chakra_petch.className}`}
         >
           Cart
         </h1>
@@ -189,7 +189,7 @@ const BasketPage = () => {
             {groupedItems?.map((item) => (
               <div
                 key={item.food?._id}
-                className="mb-4 p-4 bg-gradient-to-r from-[#e9b966] via-[#e1d3b6] to-[#e9b966] border border-[#8f613c] shadow-lg mt-6 rounded flex items-center justify-between"
+                className="mb-4 p-2 md:p-4 bg-gradient-to-r from-[#e9b966] via-[#e1d3b6] to-[#e9b966] border border-[#8f613c] shadow-lg mt-6 rounded flex items-center justify-between"
               >
                 <div
                   className="flex flex-1 items-center max-w-0 cursor-pointer"
@@ -215,7 +215,7 @@ const BasketPage = () => {
                     </p>
                   </div>
                 </div>
-                <div className="w-40 relative z-0">
+                <div className="md:w-40 relative z-0 right-0">
                   <AddToBasketButton food={item.food} />
                 </div>
               </div>

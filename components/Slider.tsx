@@ -7,7 +7,7 @@ const Slider = () => {
   const slides = [
     { id: 1, image: "/weekly-images/slider01.png", url: "/weekly-menu" },
     { id: 2, image: "/weekly-images/slider02.png", url: "/special-menu" },
-    { id: 3, image: "/weekly-images/slider03.png", url: "/our-menu" },
+    { id: 3, image: "/weekly-images/slider03.png", url: "/foods" },
     { id: 4, image: "/weekly-images/slider04.png", url: "/" },
   ];
 
